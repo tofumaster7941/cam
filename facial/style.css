@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Show the webcam as background - visible behind the 3D canvas */
+#webcam {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    /* Mirror */
+    z-index: 1;
+}
+
+/* Canvas for drawing pose landmarks on top of video */
+#landmark_canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Fullscreen AR Overlay */
+.pip-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* No background - strictly overlay */
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    z-index: 5;
+    /* Above video(1) and landmarks(2) */
+    pointer-events: none;
+}
+
+/* Three.js canvas fits inside PiP */
+#output_canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ffcc;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 10;
+}

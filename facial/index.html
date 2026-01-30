@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity 3D Suit</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Import Map for Modules -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+                "@mediapipe/tasks-vision": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.9/+esm"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <!-- Video background - shows the camera feed -->
+        <video id="webcam" autoplay playsinline></video>
+        <!-- Canvas for drawing pose landmarks -->
+        <canvas id="landmark_canvas"></canvas>
+        <!-- PiP Container for 3D model -->
+        <div id="pip-container" class="pip-view">
+             <!-- Canvas for Three.js 3D model -->
+            <canvas id="output_canvas"></canvas>
+        </div>
+
+        <div id="loading">Loading AI Models...</div>
+    </div>
+
+    <!-- Main Entry Point -->
+    <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>
