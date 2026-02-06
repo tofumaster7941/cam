@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimic The Face</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+                "@mediapipe/tasks-vision": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.9/+esm"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Game UI Overlay -->
+    <div id="game-ui">
+        <div id="game-header">
+            <div id="target-instruction">Mimic: Neutral</div>
+            <div id="timer">Time: 30</div>
+        </div>
+        <div id="score">Score: 0</div>
+    </div>
+
+    <!-- Game Over Overlay -->
+    <div id="game-over" class="hidden">
+        <div class="game-over-content">
+            <h1>GAME OVER</h1>
+            <div class="final-score">Final Score: <span id="final-score-value">0</span></div>
+            <p class="refresh-instruction">To restart the game, please refresh the tab!</p>
+            <div id="snapshot-result" class="hidden">
+                <p>Your "Hands Up!" Moment:</p>
+                <img id="game-snapshot" alt="Hands Up Snapshot">
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <!-- Fullscreen Camera View -->
+        <div id="camera-view">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="landmark-canvas"></canvas>
+            <div class="panel-label">MIMIC THE FACE</div>
+        </div>
+    </div>
+
+    <!-- New Start Screen -->
+    <div id="start-screen" class="overlay">
+        <h1>Welcome to Mimic The Face!</h1>
+        <p>Choose your background mode:</p>
+        <div class="mode-options">
+            <div class="mode-card" id="mode-normal">
+                <img src="./normal_mode.png" alt="Normal Mode">
+                <span>Normal Mode</span>
+            </div>
+            <div class="mode-card" id="mode-black">
+                <img src="./black_mode.png" alt="Black Mode">
+                <span>Black Mode</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Instruction Overlay -->
+    <div id="instruction-overlay" class="overlay" style="display: none;">
+        <h2 id="instruction-text">Mimic the expression that is on the top of the screen!</h2>
+        <div class="countdown" id="start-countdown">3</div>
+    </div>
+
+    <div id="loading">Loading Models...</div>
+
+    <audio id="success-sound" src="success.mp3" preload="auto"></audio>
+    <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>
